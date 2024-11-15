@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.spring.repository.FileMapper">
+
+    <!--파일추가-->
+    <insert id="insertFile">
+        insert into file(uuid, save_dir, file_name, bno, file_size, file_type)
+        values(#{uuid}, #{saveDir}, #{fileName}, #{bno}, #{fileSize}, #{fileType})
+    </insert>
+    <!--페이지:파일출력-->
+    <select id="getFileList" resultType="com.ezen.spring.domain.FileVO">
+        select * from file where bno = #{bno}
+    </select>
+    <!--파일삭제-->
+    <delete id="deleteFile">
+        delete from file where uuid = #{uuid}
+    </delete>
+
+
+    <!--FileSweeper를 위한 준비물-->
+    <select id="getListAllFile" resultType="com.ezen.spring.domain.FileVO">
+        select * from file
+    </select>
+    <!--FileRemoveHandler 준비물-->
+    <select id="getFile" resultType="com.ezen.spring.domain.FileVO">
+        select * from file where uuid = #{uuid}
+    </select>
+</mapper>

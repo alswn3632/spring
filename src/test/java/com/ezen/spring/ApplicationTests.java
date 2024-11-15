@@ -19,6 +19,7 @@ class ApplicationTests {
 					.writer("tester"+((int)(Math.random()*100)+1))
 					.content(i+"st Text Content...")
 					.build();
+
 			boardMapper.register(boardVO);
 		}
 	}

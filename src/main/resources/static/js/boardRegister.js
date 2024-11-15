@@ -32,8 +32,8 @@ document.addEventListener('change', (e)=>{
         for(let file of fileObj){
             let valid = fileValidation(file.name, file.size);
             isOk *= valid;
-            ul += `<li class="list-group-item" style="width:500px; display:flex; justify-content: space-between;">`;
-            ul += `<div><span>${file.name}</span>`;
+            ul += `<li class="list-group-item">`;
+            ul += `<div style="width:100%; display:flex; justify-content: space-between;"><span>${file.name}</span>`;
             ul += `${valid? '<span class="badge text-bg-success"> 업로드 가능</span>' : '<span class="badge text-bg-danger"> 업로드 불가능</span>'}`;
             ul += `</div></li>`;
 
