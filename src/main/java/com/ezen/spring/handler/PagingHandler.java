@@ -1,9 +1,12 @@
 package com.ezen.spring.handler;
 
+import com.ezen.spring.domain.CommentVO;
 import com.ezen.spring.domain.PagingVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @ToString
 @Setter
@@ -17,6 +20,8 @@ public class PagingHandler {
 
     private int totalCount;
     private PagingVO pgvo;
+
+    private List<CommentVO> cmtList;
 
     public PagingHandler(PagingVO pgvo, int totalCount){
         this.pgvo = pgvo;
@@ -33,6 +38,11 @@ public class PagingHandler {
 
         this.prev = this.startPage > 1;
         this.next = this.endPage < realEndPage;
+    }
+
+    public PagingHandler(int totalCount, PagingVO pgvo, List<CommentVO> cmtList){
+        this(pgvo, totalCount);
+        this.cmtList = cmtList;
     }
 
 }

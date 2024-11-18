@@ -38,7 +38,7 @@ public class BoardController {
         // 파일 첨부하지 않았을 때 >>>> isEmpty file > true
 
         List<FileVO> flist = null;
-        if(files.length > 0){
+        if(files[0].getSize() > 0){
             flist = fh.uploadFiles(files);
             log.info(">>>> FileHandler On! > {}", flist);
         }
@@ -70,7 +70,7 @@ public class BoardController {
     @PostMapping("/modify")
     public String modify(BoardVO boardVO, @RequestParam(name="files", required = false)MultipartFile[] files, RedirectAttributes redirectAttributes){
         List<FileVO> flist = null;
-        if(files.length > 0){
+        if(files[0].getSize() > 0){
             log.info(">>>> error > {}", files[0]);
             flist = fh.uploadFiles(files);
             log.info(">>>> FileHandler On! > {}", flist);

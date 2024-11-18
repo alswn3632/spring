@@ -37,6 +37,7 @@ document.addEventListener('change', (e)=>{
             ul += `${valid? '<span class="badge text-bg-success"> 업로드 가능</span>' : '<span class="badge text-bg-danger"> 업로드 불가능</span>'}`;
             ul += `</div></li>`;
 
+            
         }
         ul += '</ul>';
         fileZone.innerHTML = ul;

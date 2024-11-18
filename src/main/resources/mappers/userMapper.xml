@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.spring.repository.UserMapper">
+    <!--user-->
+    <!--회원가입-->
+    <insert id="register">
+        insert into user(email, pwd, nick_name) values(#{email},#{pwd},#{nickName})
+    </insert>
+
+    <select id="selectEmail" resultType="com.ezen.spring.domain.UserVO">
+        select * from user where email = #{username}
+    </select>
+
+    <select id="selectAuth" resultType="com.ezen.spring.domain.AuthVO">
+        select * from auth where email = #{username}
+    </select>
+
+    <!--auth-->
+    <!--회원가입 + 기본 user 권한 부여-->
+    <insert id="authInsert">
+        insert into auth(email, auth) values(#{email}, 'ROLE_USER')
+    </insert>
+
+</mapper>
