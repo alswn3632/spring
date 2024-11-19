@@ -17,6 +17,22 @@
         select * from auth where email = #{username}
     </select>
 
+    <select id="getList" resultType="com.ezen.spring.domain.UserVO">
+        select * from user
+    </select>
+
+    <update id="update">
+        update user set nick_name = #{nickName} where email = #{email}
+    </update>
+
+    <update id="updateHasPwd">
+        update user set nick_name = #{nickName}, pwd = #{pwd} where email = #{email}
+    </update>
+
+    <update id="updateLastLog">
+        update user set last_login = now() where email = #{email}
+    </update>
+
     <!--auth-->
     <!--회원가입 + 기본 user 권한 부여-->
     <insert id="authInsert">

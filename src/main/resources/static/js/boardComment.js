@@ -1,5 +1,6 @@
 
 console.log("boardComment.js in!!");
+console.log(username);
 
 // 수정, 삭제 이벤트
 document.addEventListener('click', (e)=>{
@@ -60,12 +61,18 @@ document.getElementById('moreBtn').addEventListener('click', ()=>{
 document.getElementById('cmtAddBtn').addEventListener('click', ()=>{
     const writer = document.getElementById('cmtWriter');
     const content = document.getElementById('cmtText');
-    
+
+    if(username == 'anonymousUser'){
+        alert("로그인 후 이용 가능합니다.");
+        return false;
+    }
+
     if(content.value == null || content.value == ""){
         alert("내용을 입력해주세요.");
         content.focus();
         return false;
     }
+
 
     const cmtData = {
         bno : bnoVal,
@@ -99,10 +106,12 @@ function printCommArea(bno, page=1) {
 
             for(cvo of result.cmtList){
                 let str = `<div class="cmtBox"><p><strong>${cvo.writer}</strong> : ${cvo.content}</p>`;
-                str += `<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First group">`;
-                str += `<button type="button" class="btn btn-outline-secondary mod" data-cno=${cvo.cno} data-writer=${cvo.writer} data-content=${cvo.content} data-bs-toggle="modal" data-bs-target="#myModal">수정</button>`;
-                str += `<button type="button" class="btn btn-outline-secondary del" data-cno=${cvo.cno}>삭제</button></div>`;
-                str += `</div>`;
+                if(username == cvo.writer){
+                    str += `<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First group">`;
+                    str += `<button type="button" class="btn btn-outline-secondary mod" data-cno=${cvo.cno} data-writer=${cvo.writer} data-content=${cvo.content} data-bs-toggle="modal" data-bs-target="#myModal">수정</button>`;
+                    str += `<button type="button" class="btn btn-outline-secondary del" data-cno=${cvo.cno}>삭제</button></div>`;
+                    str += `</div>`;
+                }
                 div.innerHTML += str;
 
             }

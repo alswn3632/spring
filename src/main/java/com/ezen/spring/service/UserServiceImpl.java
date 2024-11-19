@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Slf4j
 @Service
@@ -21,5 +23,29 @@ public class UserServiceImpl implements UserService{
             isOk *= userMapper.authInsert(userVO);
         }
         return isOk;
+    }
+
+    @Override
+    public List<UserVO> getList() {
+        List<UserVO> list = userMapper.getList();
+        for(UserVO userVO : list){
+            userVO.setAuthList(userMapper.selectAuth(userVO.getEmail()));
+        }
+        return list;
+    }
+
+    @Override
+    public int update(UserVO userVO) {
+        return userMapper.update(userVO);
+    }
+
+    @Override
+    public int updateHasPwd(UserVO userVO) {
+        return userMapper.updateHasPwd(userVO);
+    }
+
+    @Override
+    public int updateLastLog(String username) {
+        return userMapper.updateLastLog(username);
     }
 }

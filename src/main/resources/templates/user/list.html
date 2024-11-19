@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content" class="container-md">
+    <h3>User List Page!!</h3>
+    <hr>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Nickname</th>
+            <th>RegDate</th>
+            <th>LogDate</th>
+            <th>Auth</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="uvo:${list}">
+                <td>[[${uvo.email }]]</td>
+                <td>[[${uvo.nickName }]]</td>
+                <td>[[${uvo.regDate }]]</td>
+                <td>[[${uvo.lastLogin }]]</td>
+                <td>
+                    <span class="badge text-bg-secondary" th:each="auth:${uvo.authList}" style="margin-right:2px;">[[${auth.auth}]]</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

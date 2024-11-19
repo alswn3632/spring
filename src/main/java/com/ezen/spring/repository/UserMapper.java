@@ -15,4 +15,12 @@ public interface UserMapper {
     UserVO selectEmail(String username);
 
     List<AuthVO> selectAuth(String username);
+
+    List<UserVO> getList();
+
+    int update(UserVO userVO);
+
+    int updateHasPwd(UserVO userVO);
+
+    int updateLastLog(String username);
 }

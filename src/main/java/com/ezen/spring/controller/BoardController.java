@@ -43,7 +43,7 @@ public class BoardController {
             log.info(">>>> FileHandler On! > {}", flist);
         }
         int isOk = bsv.register(new BoardDTO(boardVO, flist));
-        return "index";
+        return "/index";
     }
 
     @GetMapping("/list")
@@ -57,14 +57,14 @@ public class BoardController {
         List<BoardVO> list = bsv.getList(pgvo);
         m.addAttribute("list", list);
 
-        return "board/list";
+        return "/board/list";
     }
 
     @GetMapping("/detail")
     public String detail(Model m, long bno){
         BoardDTO boardDTO = bsv.getDetail(bno);
         m.addAttribute("boardDTO", boardDTO);
-        return "board/detail";
+        return "/board/detail";
     }
 
     @PostMapping("/modify")
